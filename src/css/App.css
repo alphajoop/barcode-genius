@@ -1,0 +1,34 @@
+.container {
+    margin-top: 50px;
+}
+
+.barcode-generator {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.barcode-generator .form-select {
+    width: 100%;
+}
+
+.barcode-generator .form-control {
+    width: 100%;
+}
+
+.barcode-generator .barcode-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.barcode-generator .barcode-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.barcode-generator .download-button {
+    text-align: center;
+    margin-top: 20px;
+}
