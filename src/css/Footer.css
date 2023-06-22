@@ -1,0 +1,38 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+    color: #1b262c;
+}
+
+.footer-title {
+    margin-bottom: 10px;
+}
+
+.footer-social-icons {
+    font-size: 24px;
+}
+
+.footer-social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer-social-icons li:last-child {
+    margin-right: 0;
+}
+
+.footer-appname {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #1b262c;
+}
+.fa-facebook-f,
+.fa-twitter,
+.fa-instagram,
+.fa-github {
+    color: #0f4c75;
+}

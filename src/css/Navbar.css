@@ -1,0 +1,11 @@
+nav.navbar-dark {
+    background-color: #1b262c;
+}
+
+.nav-link {
+    color: #bbe1fa;
+}
+
+button.navbar-toggler:focus {
+    box-shadow: none;
+}
