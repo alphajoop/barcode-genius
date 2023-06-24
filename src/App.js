@@ -35,6 +35,39 @@ function App() {
         localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(updatedHistory));
     };
 
+    // Handler for exporting barcode data as CSV
+    const exportAsCSV = () => {
+        const csvContent = `data:text/csv;charset=utf-8,${getCSVContent()}`;
+        const link = document.createElement('a');
+        link.href = encodeURI(csvContent);
+        link.download = 'barcode_history.csv';
+        link.click();
+    };
+
+    // Handler for exporting barcode data as JSON
+    const exportAsJSON = () => {
+        const jsonData = JSON.stringify(history, null, 2);
+        const jsonContent = `data:application/json;charset=utf-8,${encodeURIComponent(jsonData)}`;
+        const link = document.createElement('a');
+        link.href = jsonContent;
+        link.download = 'barcode_history.json';
+        link.click();
+    };
+
+
+    // Function to get the CSV content from history data
+    const getCSVContent = () => {
+        let csvContent = 'Code, Timestamp\n';
+
+        history.forEach((item) => {
+            const { code, timestamp } = item;
+            const formattedTimestamp = new Date(timestamp).toLocaleString();
+            csvContent += `${code},${formattedTimestamp}\n`;
+        });
+
+        return csvContent;
+    };
+
     return (
         <BrowserRouter>
             <div>
@@ -48,7 +81,14 @@ function App() {
                             />
                             <Route
                                 path="/history"
-                                element={<History history={history} removeBarcodeFromHistory={removeBarcodeFromHistory} />}
+                                element={
+                                    <History
+                                        history={history}
+                                        removeBarcodeFromHistory={removeBarcodeFromHistory}
+                                        exportAsCSV={exportAsCSV}
+                                        exportAsJSON={exportAsJSON}
+                                    />
+                                }
                             />
                             <Route path="/personnalisation" element={<Customization />} />
                         </Routes>

@@ -1,21 +1,31 @@
 import React from 'react';
 import '../css/History.css';
 
-const History = ({ history, removeBarcodeFromHistory }) => {
+const History = ({ history, removeBarcodeFromHistory, exportAsCSV, exportAsJSON }) => {
     return (
         <div className="container">
             <h1 className="text-center mt-5 history-title">Historique des codes-barres</h1>
             {history.length > 0 ? (
-                <ul className="list-group mt-3">
-                    {history.map((barcode, index) => (
-                        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                            {barcode.code}
-                            <button className="btn btn-danger" onClick={() => removeBarcodeFromHistory(barcode)}>
-                                <i className="fas fa-trash"></i>
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+                <div>
+                    <div className="d-flex justify-content-end mt-3">
+                        <button className="btn btn-primary mx-2" onClick={exportAsCSV}>
+                            Exporter en CSV
+                        </button>
+                        <button className="btn btn-primary mx-2" onClick={exportAsJSON}>
+                            Exporter en JSON
+                        </button>
+                    </div>
+                    <ul className="list-group mt-3">
+                        {history.map((barcode, index) => (
+                            <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                                {barcode.code}
+                                <button className="btn btn-danger" onClick={() => removeBarcodeFromHistory(barcode)}>
+                                    <i className="fas fa-trash"></i>
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             ) : (
                 <p className="mt-3">Aucun code-barre dans l'historique</p>
             )}
