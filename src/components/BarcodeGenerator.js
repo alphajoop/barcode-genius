@@ -10,6 +10,7 @@ const BarcodeGenerator = ({ addBarcodeToHistory }) => {
     const [exportFormat, setExportFormat] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const barcodeRef = useRef(null);
+    const [showShareOptions, setShowShareOptions] = useState(false);
 
     const handleBarcodeTypeChange = (e) => {
         setBarcodeType(e.target.value);
@@ -17,6 +18,7 @@ const BarcodeGenerator = ({ addBarcodeToHistory }) => {
 
     const handleInputChange = (e) => {
         setBarcodeValue(e.target.value);
+        setShowShareOptions(e.target.value !== '');
     };
 
     const handleFormatChange = (e) => {
@@ -83,6 +85,28 @@ const BarcodeGenerator = ({ addBarcodeToHistory }) => {
         }
     };
 
+    const handleShareFacebook = () => {
+        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+        window.open(shareUrl, '_blank');
+    };
+
+    const handleShareTwitter = () => {
+        const shareUrl = `https://twitter.com/share?url=${encodeURIComponent(window.location.href)}`;
+        window.open(shareUrl, '_blank');
+    };
+
+    const handleShareEmail = () => {
+        const subject = 'Regardez ce code-barres généré';
+        const body = `Voici le code-barres que j'ai généré : ${barcodeValue}`;
+        const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoUrl;
+    };
+
+    const handleShareStorage = () => {
+        // Logique du partage sur un service de stockage en ligne
+        console.log('Partage sur un service de stockage en ligne');
+    };
+
     const placeholder = 'Veuillez saisir une valeur';
 
     return (
@@ -105,7 +129,7 @@ const BarcodeGenerator = ({ addBarcodeToHistory }) => {
                     />
 
                     {/* Export format select */}
-                    {barcodeValue && (
+                    {showShareOptions && (
                         <div>
                             <select className="form-select mb-3" value={exportFormat} onChange={handleFormatChange}>
                                 <option value="">Choisir un format d'exportation</option>
@@ -123,11 +147,29 @@ const BarcodeGenerator = ({ addBarcodeToHistory }) => {
                     </div>
 
                     {/* Download button */}
-                    {exportFormat && barcodeValue && ( // Added barcodeValue condition
+                    {exportFormat && barcodeValue && (
                         <div className="text-center mt-3">
                             <button className="btn btn-primary" onClick={handleDownloadClick}>
                                 <i className="fas fa-download"></i>
                                 <span>Télécharger</span>
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Share options */}
+                    {showShareOptions && (
+                        <div className="text-center mt-3">
+                            <button className="btn btn-secondary me-2" onClick={handleShareFacebook}>
+                                <i className="fab fa-facebook"></i>
+                            </button>
+                            <button className="btn btn-secondary me-2" onClick={handleShareTwitter}>
+                                <i className="fab fa-twitter"></i>
+                            </button>
+                            <button className="btn btn-secondary me-2" onClick={handleShareEmail}>
+                                <i className="fas fa-envelope"></i>
+                            </button>
+                            <button className="btn btn-secondary" onClick={handleShareStorage}>
+                                <i className="fas fa-cloud-upload-alt"></i>
                             </button>
                         </div>
                     )}

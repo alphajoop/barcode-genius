@@ -17,7 +17,7 @@ const Footer = () => {
                             </li>
                             <li className="list-inline-item">
                                 <a href="https://www.twitter.com/alphadiopctrl" target="_blank" rel="noopener noreferrer">
-                                    <i className="fab fa-twitter"></i>
+                                    <i className="fab fa-twitter twitter-t"></i>
                                 </a>
                             </li>
                             <li className="list-inline-item">
