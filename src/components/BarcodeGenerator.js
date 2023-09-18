@@ -3,6 +3,8 @@ import Barcode from 'react-barcode';
 import QRCode from 'qrcode.react';
 import html2canvas from 'html2canvas';
 import '../css/BarcodeGenerator.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 const BarcodeGenerator = ({ addBarcodeToHistory }) => {
     const [barcodeType, setBarcodeType] = useState('QRCode');
@@ -126,7 +128,7 @@ const BarcodeGenerator = ({ addBarcodeToHistory }) => {
                     {exportFormat && barcodeValue && ( // Added barcodeValue condition
                         <div className="text-center mt-3">
                             <button className="btn btn-primary" onClick={handleDownloadClick}>
-                                <i className="fas fa-download"></i>
+                                <FontAwesomeIcon icon={faDownload} />
                                 <span>Télécharger</span>
                             </button>
                         </div>

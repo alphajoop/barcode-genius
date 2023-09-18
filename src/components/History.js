@@ -1,5 +1,7 @@
 import React from 'react';
 import '../css/History.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const History = ({ history, removeBarcodeFromHistory, exportAsCSV, exportAsJSON }) => {
     return (
@@ -20,7 +22,7 @@ const History = ({ history, removeBarcodeFromHistory, exportAsCSV, exportAsJSON 
                             <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                                 {barcode.code}
                                 <button className="btn btn-danger" onClick={() => removeBarcodeFromHistory(barcode)}>
-                                    <i className="fas fa-trash"></i>
+                                    <FontAwesomeIcon icon={faTrash} />
                                 </button>
                             </li>
                         ))}
